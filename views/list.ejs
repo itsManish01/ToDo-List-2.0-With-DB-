@@ -1,0 +1,28 @@
+<%- include('header.ejs') %>
+<body>
+    <div class="box" id="heading">
+        <h1>
+           <%= listHead %>
+        </h1>
+    </div>
+
+    <div class="box">
+        
+        <% for(let i=0 ; i < itemList.length ; i++){ %>
+            <form action="/delete" method="post">
+                <div class="item">        
+                    <input type="hidden" value="<%=listHead%>" name="listTitle">
+                    <input type="checkbox" name="checkedItem" value="<%=itemList[i]._id%>" onChange="this.form.submit()">
+                    <p><%= itemList[i].name %></p>
+                </div>    
+            </form>
+        <% } %>
+
+
+        <form class="item" action="/" , method="post">
+            <input autocomplete="off" type="text" name="newItem" required placeholder="New Item">
+            <button type="submit" name="typeOfItem" value= <%= listHead %> >+</button>
+        </form>
+    </div>
+
+<%- include('footer.ejs') %>
